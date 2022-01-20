@@ -77,3 +77,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 3) Styling (UI functionality)
 4) Better representation of data
 5) Patient's personal detailed history
+6) View, edit and delete functionality
