@@ -1,36 +1,36 @@
 import React, {useState, useEffect} from 'react';
 import { db } from '../Firebase-config';
-import { Link } from 'react-router-dom';
 import './Home.css';
-import { useNavigate } from 'react-router-dom';
-import { collection } from "firebase/firestore";
+
 
 const Home = () => {
 
-  let navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const fetchPatients=async()=>{
+      const usersCollectionRef = db.collection("patients");
+      usersCollectionRef.get().then(s => {
+        let patientArray = []
+
+        s.forEach( singleProduct => {
+          const product = singleProduct._delegate._document.data.value.mapValue.fields
+
+          if(product !== undefined ) {
+              patientArray.push(product)
+          }
+        })
+        setData( patientArray );
+      })
+
+  }
     fetchPatients();
+
   }, [])
 
-  const fetchPatients=async()=>{
-    usersCollectionRef.get().then(s => {
-      let patientArray = []
 
-      s.forEach( singleProduct => {
-        const product = singleProduct._delegate._document.data.value.mapValue.fields
 
-        if(product != undefined ) {
-            patientArray.push(product)
-        }
-      })
-      setData( patientArray );
-    })
 
-}
-
-  const usersCollectionRef = db.collection("patients");
   // console.log(usersCollectionRef);
 
 

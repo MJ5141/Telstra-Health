@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AddEdit.css';
 import { db } from '../Firebase-config';
 import {toast} from 'react-toastify';
@@ -19,7 +19,6 @@ const initialState = {
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
-  const [data, setData] = useState({});
 
   const { firstName, familyName, contact, email, address, age, gender, height, weight, bloodGroup } = state;
 
